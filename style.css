@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: #7A419B;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #921099  0%,#921099 48%,#7e4ae8 100%);
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
+
+/* VIDEO */
+
+video {
+  position: relative;
+  z-index: -1;
+}
+
+/* PROGRESS BAR */
+
+progress[value] {
+  cursor: ew-resize;
+  width: 749px;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: white;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: yellow;
+
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+/* CONTROLS */
+
+#controlsContainer {
+  padding-top: 4px;
+  margin: 0 10px 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#video-controls {
+  margin-top: -55px;
+  padding: 0;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+#video-controls li {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-family: 'Chelsea Market', cursive;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, .1);
+  color: white;
+  border: none;
+  transition: all 0.3 ease-in-out;
+}
+
+button:hover {
+  transition: all 0.3 ease-in-out;
+  color: yellow;
+}
+
+button:focus {
+  display: none;
+}
+
+/*Playback speed range styles*/
+.slider {
+  margin-left: 5px;
+  padding-top: 5px;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;  
+  background: white;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  margin-top: -6px;;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 17px;
+  border-radius: 50%; 
+  background: yellow;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+/*In fullscreen mode, remove default controls*/
+video::-webkit-media-controls { display:none !important; }
+
+/* TRANSITION CLASSES */
+
+ .fadein, .fadeout {
+  opacity: 0;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+.fadein {
+  opacity: 1;
+}

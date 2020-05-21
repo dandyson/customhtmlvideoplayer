@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Video Player</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--Video player container-->
+  <figure id="videoContainer">
+
+    <!--Viewing the video-->
+    <video id='video' controls preload="metadata" width="750" src="652333414.mp4">
+      <!-- <source src="video/Forest Drum Sesh 2018 FILM TRIBAL.mp4" type="video/mp4"> -->
+    </video>
+    <!--Controls-->
+
+    <ul id="video-controls" class="controls fadeout">
+      <div id="progressDiv">
+        <li class="progress">
+          <progress id='progress-bar' min='0' max='100' value='0'></progress>
+        </li>
+      </div>
+      <div id="controlsContainer">
+        <li><button id="playpause" type="button">&#9654;</button></li>
+        <input id="speed" class="slider" type="range" name="speed" min="0" max="2" value="1" step="0.1">
+        <li><button id="stop" type="button">Stop</button></li>
+        <li><button id="mute" type="button">Mute/Unmute</button></li>
+        <input id="volume" class="slider" type="range" name="volume" min="0" max="1" value="1" step="0.1">
+        <li><button id="fs" type="button">Fullscreen</button></li>
+        <li><button id="rewindBut" type="button">←10s</button></li>
+        <li><button id="skipBut" type="button">10s→</button></li>
+
+    </ul>
+    </div>
+  </figure>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>
