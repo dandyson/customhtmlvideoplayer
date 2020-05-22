@@ -30,23 +30,19 @@ if (supportsVideo) {
     //FUNCTIONS
 
     //PLAY PAUSE BUTTON - on click, the video is either played or paused depending on if the video is paused or not
-    function videoPlayPause(e) {
-        if (video.paused || video.ended) {
-            video.play();
-        } else {
-            video.pause();
-        }
+    const videoPlayPause = (e) => {
+        video.paused || video.ended ? video.play() : video.pause();
     }
 
     //STOP BUTTON - on click, the video is stopped and the video is returned to the start
-    function stopVideo() {
+    const stopVideo = () => {
         video.currentTime = 0;
-        video.pause();
         progressBar.value = 0;
+        video.pause();
     }
 
     //MUTE BUTTON - on click, audio is muted...of course :)
-    function muteVideo() {
+    const muteVideo = () => {
         video.muted = !video.muted;
     }
 
@@ -60,7 +56,7 @@ if (supportsVideo) {
 
     //PROGRESS BAR - Listen out for the video duration time updates, then move the progress bar along in correlation to the percentage of the duration of the video is complete
 
-    function updateProgressBar() {
+    const updateProgressBar = () => {
         var percentage = Math.floor((100 / video.duration) *
             video.currentTime);
         progressBar.value = percentage;
@@ -68,7 +64,7 @@ if (supportsVideo) {
 
     //PROGRESS BAR & SCRUB - When clicking anywhere on the progress bar, it skips the video ahead to that point (roughtly)
 
-    function scrub(e) {
+    const scrub = (e) => {
         const scrubTime = (e.offsetX / progressBar.offsetWidth) * video.duration;
         video.currentTime = scrubTime;
     }
@@ -77,36 +73,32 @@ if (supportsVideo) {
 
     //SKIP AHEAD (Button) - Skip forward 10s on click
 
-    function skipAhead() {
+    const skipAhead = () => {
         video.currentTime += 10;
     }
 
     //REWIND (button) - Rewind 10s on click
 
-    function rewindVideo() {
+    const rewindVideo = () => {
         video.currentTime -= 10;
     }
 
 
     //FULL SCREEN
     //Check if full screen is available on the browser, if so, request full screen. If not, set fullscreen button to none so it cant be seen
-    function fullScreenMode() {
-        if (document.fullscreenEnabled) {
-            video.requestFullscreen();
-        } else {
-            fullscreen.style.display = 'none';
-        }
+    const fullScreenMode = () => {
+        document.fullscreenEnabled ? video.requestFullscreen() : fullscreen.style.display = 'none';
     }
 
     //TRANSITION FOR CONTROLS - Controls fade in when the mouse is over the video
 
-    function controlsIn() {
+    const controlsIn = () => {
         videoControls.classList.remove('fadeout')
         videoControls.classList.add('fadein');
     }
 
 
-    function controlsOut() {
+    const controlsOut = () => {
         videoControls.classList.remove('fadein')
         videoControls.classList.add('fadeout');
     }
@@ -124,6 +116,11 @@ if (supportsVideo) {
 
     //Play/pause button
     playpause.addEventListener('click', videoPlayPause);
+    window.addEventListener('keyup', function (e) {
+        if (e.keyCode === 32) {
+            videoPlayPause();
+        }
+    })
 
     //Stop video
     stop.addEventListener('click', stopVideo)
@@ -134,7 +131,6 @@ if (supportsVideo) {
     //PROGRESS BAR
 
     video.addEventListener('timeupdate', updateProgressBar, false);
-
     progressBar.addEventListener('click', scrub);
     progressBar.addEventListener('mousemove', (e) => mousedown && scrub(e));
     progressBar.addEventListener('mousedown', () => mousedown = true);
@@ -144,11 +140,21 @@ if (supportsVideo) {
     volume.addEventListener('change', changeVolume);
     volume.addEventListener('mousemove', changeVolume);
 
-    //SKIP AHEAD
+    //SKIP AHEAD 
     skipForward.addEventListener('click', skipAhead);
+    window.addEventListener('keyup', (e) => {
+        if (e.keyCode === 39) {
+            skipAhead();
+        }
+    });
 
     //REWIND
     rewind.addEventListener('click', rewindVideo);
+    window.addEventListener('keyup', (e) => {
+        if (e.keyCode === 37) {
+            rewindVideo();
+        }
+    });
 
     //FULLSCREEN
     fullscreen.addEventListener('click', fullScreenMode);
